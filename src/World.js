@@ -47,33 +47,31 @@ class World extends Component {
     y: 0,
     qw: { x: 0, y: 0 }
   };
-  mausD = (xx, yy) => {
+  mouseD = (xx, yy) => {
     this.setState({
       isPressed: true,
       qw: { x: xx, y: yy }
     });
-    console.log("D");
+    //console.log("D");
   };
 
-  mausM = () => {
+  mouseM = () => {
     if (this.state.isPressed === true) {
       //alert("M");
-     // console.log(this.state.x + "  " + this.state.qw.x);
+      // console.log(this.state.x + "  " + this.state.qw.x);
       let differenceX = this.state.x - this.state.qw.x;
-     // console.log(differenceX);
-    //  const differenceY = this.state.y - this.state.qw.y;
+      // console.log(differenceX);
+      //  const differenceY = this.state.y - this.state.qw.y;
       this.setState({
-        rotation: 
-          differenceX - this.state.rotation / 240,
+        rotation: differenceX - this.state.rotation / 240
         //  differenceY + this.state.rotation / 240,
         //  0
-        
       });
-  //    console.log("M  " + this.state.rotation);
+      //    console.log("M  " + this.state.rotation);
     }
   };
 
-  mausU = () => {
+  mouseU = () => {
     this.setState({
       isPressed: false
     });
@@ -93,22 +91,19 @@ class World extends Component {
     return (
       <div onMouseMove={this._onMouseMove}>
         <div>
-          {" "}
           state x : {this.state.x}
           state y: {this.state.y}
-          Press : {this.state.isPressed}
         </div>
         <svg
           width={1000}
           height={850}
           viewBox="0 0 800 450"
-          onMouseDown={e => this.mausD(this.state.x, this.state.y)}
-          onMouseMove={e => this.mausM()}
-          onMouseUp={e => this.mausU()}
+          onMouseDown={e => this.mouseD(this.state.x, this.state.y)}
+          onMouseMove={e => this.mouseM()}
+          onMouseUp={e => this.mouseU()}
         >
           <path d={pathString} />
           ))} />
-         
         </svg>
       </div>
     );
